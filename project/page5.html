@@ -5,33 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Page 5 - Heart</title>
     <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* layout stays same */
+      .final-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* button */
+      .one-more-btn {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1.6rem;
+        border-radius: 999px;
+        border: none;
+        background: #222;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      /* popup overlay */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+
+      .overlay.active {
+        display: flex;
+      }
+
+      /* popup box */
+      .side-box {
+        background: #fff;
+        padding: 1.8rem;
+        border-radius: 18px;
+        text-align: center;
+        width: 90%;
+        max-width: 360px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        animation: pop 0.35s ease;
+      }
+
+      @keyframes pop {
+        from {
+          transform: scale(0.85);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .gojo {
+        width: 150px;
+        margin: 1rem auto;
+        display: block;
+      }
+
+.choices {
+  position: relative;
+  margin-top: 1.8rem;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.choices button {
+  padding: 0.7rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.yes-btn {
+  background: #ff69b4;
+  color: #fff;
+}
+
+.no-btn {
+  background: #ddd;
+  color: #444;
+  position: absolute; /* still absolute so it can run */
+  right: 0;
+}
+
+    </style>
   </head>
+
   <body>
-    <audio
-      id="bg-music"
-      src="assets/happy-birthday-soft.mp3"
-      autoplay
-      loop
-    ></audio>
+    <audio id="bg-music" src="assets/happy-birthday-soft.mp3" autoplay loop></audio>
+
     <div class="floating-hearts" aria-hidden="true"></div>
+
     <main class="page">
       <section class="card final">
-        <div class="tree-wrap reveal" aria-hidden="true">
-          <img
-            class="tree-svg"
-            src="assets/Gemini_Generated_Image_u9aidvu9aidvu9ai.png"
-            alt="Heart-shaped tree"
-          />
-        </div>
+        <div class="final-layout">
+          <!-- ORIGINAL CONTENT -->
+          <div>
+            <div class="tree-wrap reveal">
+              <img
+                class="tree-svg"
+                src="assets/Gemini_Generated_Image_u9aidvu9aidvu9ai.png"
+                alt="Heart-shaped tree"
+              />
+            </div>
 
-        <div class="final-text reveal">
-          <p class="final-line">
-            It did not grow overnight.<br />
-            Neither did what I feel for you.
-          </p>
+            <div class="final-text reveal">
+              <p class="final-line">
+                It did not grow overnight.<br />
+                Neither did what I feel for you.
+              </p>
+
+              <button class="one-more-btn" onclick="openPopup()">
+                And One more thing.....
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
+
+    <!-- POPUP -->
+    <div class="overlay" id="overlay">
+      <div class="side-box">
+        <img
+          src="assets/images/Hug Kawaii.jpg"
+          alt="Valentine"
+          class="gojo"
+        />
+
+        <h2>Will you be my Valentine, Anu? 💌</h2>
+
+        <div class="choices">
+          <button class="yes-btn" onclick="goYes()">Yes 💖</button>
+          <button class="no-btn" id="noBtn">No 🙃</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const overlay = document.getElementById("overlay");
+      const noBtn = document.getElementById("noBtn");
+
+      function openPopup() {
+        overlay.classList.add("active");
+      }
+
+      noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 180;
+        const y = Math.random() * 80;
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+      });
+
+      function goYes() {
+        window.location.href = "page6.html";
+      }
+    </script>
 
     <script src="script.js" defer></script>
   </body>

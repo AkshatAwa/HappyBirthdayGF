@@ -113,6 +113,22 @@ body {
   box-shadow: 0 14px 30px rgba(176, 122, 112, 0.28);
 }
 
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  color: var(--ink);
+}
+
 .gallery {
   margin: 28px 0 10px;
   display: grid;
